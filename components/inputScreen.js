@@ -2,23 +2,25 @@ import React from 'react';
 import {View, Text, Image} from 'react-native';
 import { Button } from 'react-native-elements';
 
+import InputFields from './inputFields'
+
 const InputScreen = (props) => {
     return (
         //parent Container
-        <View style={styles.welcomeContainer}>
+        <View style={styles.inputContainer}>
             {/* TITLE */}
-            <View style={{flex:1, justifyContent: 'center' }}>
-                <Text style={styles.welcomeTitle}>LapTrak</Text>
+            <View style={{flex:.5, justifyContent: 'center', borderWidth: 0.5,borderColor: '#d6d7da' }}>
+                <Text style={styles.inputTitle}>LapTrak</Text>
             </View>
-            {/* Image  */}
-            <View style={{flex:2}}>
+            {/* LIST OF WORKOUTS  */}
+            <View style={{flex:1.5,  borderWidth: 0.5,borderColor: '#d6d7da'}}>
                     <Text> LIST OF INPUTTED </Text>
             </View>
-            <View style={{flex:.5}}>
-                    <Text> INPUT AREA </Text>
+            <View style={{flex:1, borderWidth: 0.5, borderColor: '#d6d7da'}}>
+                    <InputFields />
             </View>
             {/* aDD SET */}
-            <View style={{flex:1, justifyContent: 'center'}}>
+            <View style={{flex:.50, justifyContent: 'center',}}>
                 <Button
                     title="Submit Set"
                     // type="clear"
@@ -28,7 +30,7 @@ const InputScreen = (props) => {
                     }}
                 />
             </View>
-            <View style={{flex:1, justifyContent: 'center'}}>
+            <View style={{flex:.5, justifyContent: 'center'}}>
                 <Button
                     title="Start Workout!"
                     type="clear"
@@ -46,14 +48,14 @@ const InputScreen = (props) => {
 export default InputScreen;
 
 const styles ={
-    welcomeContainer: {
-        justifyContent: 'space-around',
+    inputContainer: {
+        justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: '#DCEEFA',
         flex:1,
         // justifyContent: 'center'
     },
-    welcomeTitle: {
+    inputTitle: {
         fontFamily:  'Cochin',
         fontSize: 50,
         fontWeight: 'bold',

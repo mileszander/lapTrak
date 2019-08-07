@@ -40,7 +40,7 @@ export default class App extends Component {
       )} else if (this.state.page ===1) {
         //Input page
         return (
-        <InputScreen />
+        <InputScreen nextPage={this.nextPage} />
       )} else if (this.state.page === 2) {
       //swim page          
         return (
