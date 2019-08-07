@@ -1,32 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {View, Text, Picker} from 'react-native';
-import { Button } from 'react-native-elements';
-
-const set = {stroke:'Back' , count: 0, distance: 0, interval: 0, type: 0 }
 
 
-export default class InputFields extends Component {
-    constructor () {
-        super ()
-        this.state = {
-            stroke:'Free',
-            distance: 100,
-            count: 10, 
-            interval: '1:30', 
-            type: 'swim'
-        }
-}
-    render () {
+
+
+const InputFields = ({swim, setWorkOut}) => {
     return (
         //parent Container
         <View style={styles.inputFieldContainer}>
             <View>
                 {/* STROKE SELECTOR */}
                 <Picker
-                    selectedValue={this.state.stroke}
+                    selectedValue={swim.stroke}
                     style={{height: 50, width: 100}}
                     onValueChange={(itemValue => {
-                        this.setState({stroke: itemValue})
+                        setWorkOut({stroke: itemValue})
                         }
                     )}
                     >
@@ -39,10 +27,10 @@ export default class InputFields extends Component {
             <View>
                 {/* Yardage SELECTOR */}
                 <Picker
-                    selectedValue={this.state.distance}
+                    selectedValue={swim.distance}
                     style={{height: 50, width: 100}}
                     onValueChange={(itemValue => {
-                        this.setState({distance: itemValue})
+                        setWorkOut({distance:itemValue})
                         }
                     )}
                     >
@@ -71,10 +59,10 @@ export default class InputFields extends Component {
             <View>
                 {/* Count SELECTOR */}
                 <Picker
-                    selectedValue={this.state.count}
+                    selectedValue={swim.count}
                     style={{height: 50, width: 100}}
                     onValueChange={(itemValue => {
-                        this.setState({count: itemValue})
+                        setWorkOut({count: itemValue})
                         }
                     )}
                     >
@@ -112,10 +100,10 @@ export default class InputFields extends Component {
             <View>
                 {/* INTERVAL SELECTOR */}
                 <Picker
-                    selectedValue={this.state.interval}
+                    selectedValue={swim.interval}
                     style={{height: 50, width: 100}}
                     onValueChange={(itemValue => {
-                        this.setState({interval: itemValue})
+                        setWorkOut({interval: itemValue})
                         }
                     )}
                     >
@@ -227,10 +215,10 @@ export default class InputFields extends Component {
             <View>
                 {/* TYPE SELECTOR */}
                 <Picker
-                    selectedValue={this.state.type}
+                    selectedValue={swim.type}
                     style={{height: 50, width: 150}}
                     onValueChange={(itemValue => {
-                        this.setState({type: itemValue})
+                        setWorkOut({type: itemValue})
                         }
                     )}
                     >
@@ -243,27 +231,19 @@ export default class InputFields extends Component {
             </View>
         </View>
     )
-    }
 }
 
 
 const styles ={
     inputFieldContainer: {
         justifyContent: 'space-around',
-        // alignItems: 'center',
         backgroundColor: '#DCEEFA',
-        // flex:1,
         flexDirection: 'row'
-        // justifyContent: 'center'
     },
-//     welcomeTitle: {
-//         fontFamily:  'Cochin',
-//         fontSize: 50,
-//         fontWeight: 'bold',
-//         color: '#4592C6'
-
-//     }
 }
+
+export default InputFields
+
 
 
 

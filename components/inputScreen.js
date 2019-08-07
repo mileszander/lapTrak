@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {View, Text, Image} from 'react-native';
 import { Button } from 'react-native-elements';
 
 import InputFields from './inputFields'
 
-const InputScreen = (props) => {
+export default class InputScreen extends Component {
+    constructor (props) {
+        super (props)
+        this.state = {
+            stroke:'Free',
+            distance: 100,
+            count: 10, 
+            interval: 90, 
+            type: 'swim'
+        }
+        this.setWorkOut = this.setWorkOut.bind(this)
+    }
+    setWorkOut(event){
+        this.setState(event)
+    }
+
+    renderSets() {
+        let sets = this.props.workOuts
+        return sets.map((set,i) => {
+            return <Text key={i} style={styles.listItems}>
+            {i+1}. {set.count} x {set.distance} {set.stroke} 
+            {set.type} on the {set.interval}
+            </Text>
+        })
+    }
+
+    render () {
     return (
         //parent Container
         <View style={styles.inputContainer}>
@@ -13,20 +39,21 @@ const InputScreen = (props) => {
                 <Text style={styles.inputTitle}>LapTrak</Text>
             </View>
             {/* LIST OF WORKOUTS  */}
-            <View style={{flex:1.5,  borderWidth: 0.5,borderColor: '#d6d7da'}}>
-                    <Text> LIST OF INPUTTED </Text>
+            <View style={{flex:1.5,  width: 400, borderWidth: 0.5, borderColor: '#d6d7da'}}>
+                {this.renderSets()}
             </View>
             <View style={{flex:1, borderWidth: 0.5, borderColor: '#d6d7da'}}>
-                    <InputFields />
+                    <InputFields swim={this.state} setWorkOut={this.setWorkOut}/>
             </View>
             {/* aDD SET */}
-            <View style={{flex:.50, justifyContent: 'center',}}>
+            <View style={{flex:.50, justifyContent: 'center'}}>
                 <Button
                     title="Submit Set"
                     // type="clear"
                     type="outline"
                     onPress={()=>{
-                        props.nextPage()
+                        set = this.state
+                        this.props.submitSet(set)
                     }}
                 />
             </View>
@@ -36,16 +63,16 @@ const InputScreen = (props) => {
                     type="clear"
                     type="outline"
                     onPress={()=>{
-                        props.nextPage()
+                        this.props.nextPage()
                     }}
                 />
             </View>
 
         </View>
     )
+    }
 }
 
-export default InputScreen;
 
 const styles ={
     inputContainer: {
@@ -60,6 +87,11 @@ const styles ={
         fontSize: 50,
         fontWeight: 'bold',
         color: '#4592C6'
-
+    },
+    listItems: {
+        fontFamily:  'Cochin',
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: '#464950'
     }
 }

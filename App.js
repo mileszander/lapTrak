@@ -4,19 +4,35 @@ import { StyleSheet, Text, View } from 'react-native';
 //import components
 import Welcome from './components/welcome'
 import InputScreen from './components/inputScreen'
+import Timer from './components/timer'
 
 export default class App extends Component {
   constructor() {
     super () 
     this.state = {
-        page: 1,
+        page: 2,
         //array of object for workouts [ {stroke: free, distance: 100, amount: 10}]
-        workOuts: [],
+        workOuts: [{
+          "count": 10,
+          "distance": 100,
+          "interval": "1:30",
+          "stroke": "Free",
+          "type": "swim",
+        },
+        {
+          "count": 10,
+          "distance": 100,
+          "interval": "1:30",
+          "stroke": "Back",
+          "type": "swim",
+        },
+      ],
         // this one is maybe, I'm thinking we will need this one just because if we map through the list 
         //we will have a lot of extra stuff going on, including a timeout. 
         currentSet: 0
     }
     this.nextPage=this.nextPage.bind(this)
+    this.submitSet=this.submitSet.bind(this)
     // this.handleChange = this.handleChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -25,8 +41,13 @@ export default class App extends Component {
   nextPage(){
     let curPage = this.state.page 
     this.setState({page: (curPage += 1)})
-    console.log('clicked next page!')
   }
+
+  submitSet(event) {
+    sets = this.state.workOuts
+    sets.push(event)
+    this.setState({workOuts : sets})
+  } 
 
   
 
@@ -40,15 +61,16 @@ export default class App extends Component {
       )} else if (this.state.page ===1) {
         //Input page
         return (
-        <InputScreen nextPage={this.nextPage} />
+        <InputScreen nextPage={this.nextPage} submitSet={this.submitSet}
+        workOuts={this.state.workOuts} />
       )} else if (this.state.page === 2) {
       //swim page          
         return (
-          <Text>Timer Page</Text>
+          <Timer workOuts={this.state.workOuts}/>
       )} else if (this.state.page === 3) {
       //next workout page
         return (
-          <Text>Timer Page</Text>
+          <Text>Next Workout Page</Text>
       )} 
       else if (this.state.page === 4) {
         // Completion page
