@@ -35,14 +35,14 @@ export default class InputScreen extends Component {
         //parent Container
         <View style={styles.inputContainer}>
             {/* TITLE */}
-            <View style={{flex:.5, justifyContent: 'center', borderWidth: 0.5,borderColor: '#d6d7da' }}>
+            <View style={{flex:.5, justifyContent: 'center' }}>
                 <Text style={styles.inputTitle}>LapTrak</Text>
             </View>
             {/* LIST OF WORKOUTS  */}
-            <View style={{flex:1.5,  width: 400, borderWidth: 0.5, borderColor: '#d6d7da'}}>
+            <View style={{flex:1.5,  width: 400}}>
                 {this.renderSets()}
             </View>
-            <View style={{flex:1, borderWidth: 0.5, borderColor: '#d6d7da'}}>
+            <View style={{flex:1}}>
                     <InputFields swim={this.state} setWorkOut={this.setWorkOut}/>
             </View>
             {/* aDD SET */}

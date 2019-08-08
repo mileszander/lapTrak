@@ -36,6 +36,7 @@ const styles ={
         justifyContent: 'space-between',
         flex: 1,
     },
+    
 }
 
 export default Buttons;
