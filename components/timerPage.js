@@ -7,17 +7,18 @@ import Header from './headerTimer'
 import Timer from './timer'
 
 
-const TimerPage = ({workOuts, setNum}) => {
+const TimerPage = ({workOuts, setCount, count, changeTimer, timerOn, nextRep, resetTimer}) => {
     return (
         <View style={styles.timerPageContainer}>
             <View style={{flex:.6, alignItems: 'center'}}>
-                <Header set={workOuts[setNum]}/>
+                <Header set={workOuts[setCount]} curCount={count}/>
             </View>
             <View style={{flex:1.5, alignItems: 'center'}}>
-                <Timer set={workOuts[setNum]}/> 
+                <Timer set={workOuts[setCount]} timerOn={timerOn} 
+                nextRep={nextRep} resetTimer={resetTimer}/> 
             </View>
             <View style={{flex:.25, alignItems: 'center'}}>
-                <Buttons />
+                <Buttons changeTimer={changeTimer}/>
             </View>
 
 

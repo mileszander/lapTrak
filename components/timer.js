@@ -4,19 +4,27 @@ import {View, Text} from 'react-native';
 
 
 
-const Timer = ({set}) => {
+const Timer = ({set,timerOn, nextRep,resetTimer}) => {
+    let a = 5
     return (
         <View style={styles.timerContainer}>
-  
 
         <CountDown
-            until={set.interval}
-            // onFinish={() => alert('finished')}
+            until={a}
+            onFinish={() => {
+                nextRep(1)
+                if(2<3) {
+                   a=4 
+                }
+            }}
             // onPress={() => alert('hello')}
             timeToShow={['M', 'S']}
             timeLabels={{}}
             size={175}
+            running={timerOn}
         />
+        {/* {resetTimer(5)} */}
+
         </View>
     )
 }
