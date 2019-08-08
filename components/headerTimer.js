@@ -3,12 +3,12 @@ import {View, Text} from 'react-native';
 
 
 
-const Header = ({set}) => {
+const Header = ({set, curCount}) => {
     return (
         <View style={styles.headerContainer}>
             <View style={{flex:3, alignItems: 'center'}}>
                 <Text style={styles.countStyle}>
-                   1 / {set.count}
+                   {curCount} / {set.count}
                 </Text>
             </View>
             <View style={{flex:6, alignItems: 'center'}}>

@@ -1,21 +1,26 @@
 import React from 'react';
 import CountDown from 'react-native-countdown-component';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 
 
 
-const Timer = ({set}) => {
+const Timer = ({set, timerOn, nextRep, curCount, timer, nextLapTimer, timerCount }) => {
+
     return (
         <View style={styles.timerContainer}>
-  
-
         <CountDown
-            until={set.interval}
-            // onFinish={() => alert('finished')}
-            // onPress={() => alert('hello')}
+            until={timer+1}
+            onFinish={() => {
+                nextRep(1)
+                let actInterval= set.interval
+                if(set.count >= curCount) {
+                    nextLapTimer()
+                }
+            }}
             timeToShow={['M', 'S']}
             timeLabels={{}}
             size={175}
+            running={timerOn}
         />
         </View>
     )
@@ -35,5 +40,6 @@ const styles ={
         color: '#4592C6'
     }
 }
+
 
 export default Timer;
