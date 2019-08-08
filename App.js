@@ -13,20 +13,19 @@ export default class App extends Component {
     this.state = {
         page: 2,
         timeOn: false,
-        count:1,
-        prevCount:1,
+        count:0,
         currentSet: 0,
         //array of object for workouts [ {stroke: free, distance: 100, amount: 10}]
         workOuts: [
           {
-          "count": 10,
+          "count": 5,
           "distance": 100,
-          "interval": 5,
+          "interval": 2,
           "stroke": "Free",
           "type": "swim",
         },
         {
-          "count": 10,
+          "count": 3,
           "distance": 100,
           "interval": 100,
           "stroke": "Back",
@@ -40,11 +39,8 @@ export default class App extends Component {
     this.submitSet=this.submitSet.bind(this)
     this.changeTimer=this.changeTimer.bind(this)
     this.nextRep=this.nextRep.bind(this)
-    this.nextSet=this.nextSet.bind(this)
-    this.resetTimer=this.resetTimer.bind(this)
 
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+
   }
   
   //iterate through pages, will have button press
@@ -68,37 +64,21 @@ export default class App extends Component {
   nextRep (next) {
     let currentRep = this.state.count
     currentRep++
-    this.setState({
-      count: currentRep
-      
-    })
-    this.resetTimer(5)
+    if(currentRep <= this.state.workOuts[this.state.currentSet].count) {
+      this.setState({
+        count: currentRep
+      }) 
+    } else {
+      let nextSet = this.state.currentSet
+      nextSet++
+      this.setState({
+        currentSet: nextSet,
+        count: 0
+      }) 
+      console.log(this.state.set) 
+    }
   }
 
-
-  resetTimer (num) {
-    if(this.state.count < 10) {
-     return ( <CountDown
-            until={5}
-            onFinish={() => {
-                this.nextRep()
-            }}
-            // onPress={() => alert('hello')}
-            timeToShow={['M', 'S']}
-            timeLabels={{}}
-            size={175}
-            running={this.state.timeOn}
-          />)
-  }
-}
-
-//set counter
-  nextSet() {
-
-  }
-  
-
-  //functions for accepting users
 
     render() {
       //welcome page
@@ -116,7 +96,8 @@ export default class App extends Component {
           <TimerPage workOuts={this.state.workOuts} count={this.state.count}
           setCount={this.state.currentSet} changeTimer={this.changeTimer}
           timerOn={this.state.timeOn} nextRep={this.nextRep}
-          resetTimer={this.resetTimer}/>
+          />
+          // resetTimer={this.resetTimer}
       )} else if (this.state.page === 3) {
       //next workout page
         return (

@@ -1,32 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
+
 import CountDown from 'react-native-countdown-component';
 import {View, Text} from 'react-native';
 
 
+// class Timer extends Comment = ({set,timerOn, nextRep,resetTimer})  {
+class Timer extends Component {
+    constructor(props) {
+        super()
+        this.state = {
+            timer: 5,
+            resetTime: 0
+        }
+    }
 
-const Timer = ({set,timerOn, nextRep,resetTimer}) => {
-    let a = 5
+    render () {
     return (
         <View style={styles.timerContainer}>
-
         <CountDown
-            until={a}
+            until={this.state.timer}
             onFinish={() => {
-                nextRep(1)
-                if(2<3) {
-                   a=4 
+                this.props.nextRep(1)
+                let actInterval= this.props.set.interval
+                if(this.props.set.count >= this.props.curCount) {
+                   this.setState({
+                    timer:0,
+                    resetTime: actInterval
+                   })
+                   this.setState({
+                    timer: this.state.resetTime
+                })
                 }
             }}
-            // onPress={() => alert('hello')}
             timeToShow={['M', 'S']}
             timeLabels={{}}
             size={175}
-            running={timerOn}
+            running={this.props.timerOn}
         />
-        {/* {resetTimer(5)} */}
+
 
         </View>
     )
+}
 }
 
 const styles ={
@@ -43,5 +58,6 @@ const styles ={
         color: '#4592C6'
     }
 }
+
 
 export default Timer;
