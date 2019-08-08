@@ -4,28 +4,30 @@ import { StyleSheet, Text, View } from 'react-native';
 //import components
 import Welcome from './components/welcome'
 import InputScreen from './components/inputScreen'
-import Timer from './components/timer'
+import TimerPage from './components/timerPage'
 
 export default class App extends Component {
   constructor() {
     super () 
     this.state = {
-        page: 2,
+        page: 0,
+        count:0,
         //array of object for workouts [ {stroke: free, distance: 100, amount: 10}]
-        workOuts: [{
-          "count": 10,
-          "distance": 100,
-          "interval": "1:30",
-          "stroke": "Free",
-          "type": "swim",
-        },
-        {
-          "count": 10,
-          "distance": 100,
-          "interval": "1:30",
-          "stroke": "Back",
-          "type": "swim",
-        },
+        workOuts: [
+        //   {
+        //   "count": 10,
+        //   "distance": 100,
+        //   "interval": 90,
+        //   "stroke": "Free",
+        //   "type": "swim",
+        // },
+        // {
+        //   "count": 10,
+        //   "distance": 100,
+        //   "interval": 100,
+        //   "stroke": "Back",
+        //   "type": "swim",
+        // },
       ],
         // this one is maybe, I'm thinking we will need this one just because if we map through the list 
         //we will have a lot of extra stuff going on, including a timeout. 
@@ -66,7 +68,7 @@ export default class App extends Component {
       )} else if (this.state.page === 2) {
       //swim page          
         return (
-          <Timer workOuts={this.state.workOuts}/>
+          <TimerPage workOuts={this.state.workOuts} setNum={this.state.count}/>
       )} else if (this.state.page === 3) {
       //next workout page
         return (

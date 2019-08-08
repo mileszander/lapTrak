@@ -48,6 +48,5 @@ const styles ={
         fontSize: 50,
         fontWeight: 'bold',
         color: '#4592C6'
-
     }
 }

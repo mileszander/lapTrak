@@ -1,38 +1,39 @@
 import React from 'react';
+import CountDown from 'react-native-countdown-component';
 import {View, Text} from 'react-native';
 
-//components
-import Buttons from './buttonRow'
-import Header from './headerTimer'
 
 
-
-const Timer = ({workOuts}) => {
+const Timer = ({set}) => {
     return (
         <View style={styles.timerContainer}>
-            <View style={{flex:.75, alignItems: 'center', borderWidth: 0.5, borderColor: '#d6d7da'}}>
-                <Header />
-            </View>
-            <View style={{flex:1.5, alignItems: 'center', borderWidth: 0.5, borderColor: '#d6d7da'}}>
-                <Text>TIMER LEVEL ROW</Text>
-            </View>
-            <View style={{flex:.5, alignItems: 'center', borderWidth: 0.5, borderColor: '#d6d7da'}}>
-                <Buttons />
-            </View>
+  
 
-
+        <CountDown
+            until={set.interval}
+            // onFinish={() => alert('finished')}
+            // onPress={() => alert('hello')}
+            timeToShow={['M', 'S']}
+            timeLabels={{}}
+            size={175}
+        />
         </View>
     )
 }
 
 const styles ={
     timerContainer: {
-        justifyContent: 'space-around',
-        backgroundColor: '#DCEEFA',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         flex: 1,
-        alignContent: 'center'
-        
+        alignItems: 'center',
     },
+    welcomeTitle: {
+        fontFamily:  'Cochin',
+        fontSize: 50,
+        fontWeight: 'bold',
+        color: '#4592C6'
+    }
 }
 
 export default Timer;

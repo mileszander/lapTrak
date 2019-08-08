@@ -6,7 +6,7 @@ import { Button } from 'react-native-elements';
 const Buttons = ({workOuts}) => {
     return (
         <View style={styles.buttonContainer}>
-            <View style={{flex:1, paddingLeft: 40, paddingRight: 40, paddingTop: 40 }}>
+            <View style={{flex:1, paddingLeft: 40, paddingRight: 40, paddingTop: 20 }}>
             <Button
                 title="Start"
                 type="clear"
@@ -18,7 +18,7 @@ const Buttons = ({workOuts}) => {
                 }}
             />
             </View>
-            <View style={{flex:1, paddingLeft: 40, paddingRight: 40, paddingTop: 40 }}>
+            <View style={{flex:1, paddingLeft: 40, paddingRight: 40, paddingTop: 20 }}>
             <Button
                 title="Stop"
                 type="clear"

@@ -2,14 +2,19 @@ import React from 'react';
 import {View, Text} from 'react-native';
 
 
-const Header = ({workOuts}) => {
+
+const Header = ({set}) => {
     return (
         <View style={styles.headerContainer}>
-            <View style={{flex:3, alignItems: 'center', borderWidth: 0.5, borderColor: '#d6d7da'}}>
-                <Text>Set Counter</Text>
+            <View style={{flex:3, alignItems: 'center'}}>
+                <Text style={styles.countStyle}>
+                   1 / {set.count}
+                </Text>
             </View>
-            <View style={{flex:6, alignItems: 'center', borderWidth: 0.5, borderColor: '#d6d7da'}}>
-                <Text>Set Counter</Text>
+            <View style={{flex:6, alignItems: 'center'}}>
+                <Text style={styles.setStyle}>
+                    {set.count} x {set.distance} {set.stroke} {set.type} on the {set.interval}
+                </Text>
             </View>
         </View>
     )
@@ -20,7 +25,18 @@ const styles ={
         flexDirection: 'row',
         justifyContent: 'space-between',
         flex: 1,
+        alignItems: 'center',
     },
+    setStyle: {
+        fontFamily:  'Cochin',
+        fontSize: 70,
+        fontWeight: 'bold',
+        // color: '#464950'
+    },
+    countStyle : {
+        fontSize: 70,
+        fontWeight: 'bold',
+    }
 }
 
 export default Header;
