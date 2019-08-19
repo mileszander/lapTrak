@@ -28,8 +28,8 @@ const styles ={
         fontSize: 70,
         fontWeight: 'bold',
         alignItems: 'center',
-        flex: .30,
-        paddingTop:100
+        flex: .25,
+        paddingTop:20
         // color: '#464950'
     },
     countStyle : {

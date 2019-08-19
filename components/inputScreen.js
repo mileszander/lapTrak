@@ -24,8 +24,7 @@ export default class InputScreen extends Component {
         let sets = this.props.workOuts
         return sets.map((set,i) => {
             return <Text key={i} style={styles.listItems}>
-            {i+1}. {set.count} x {set.distance} {set.stroke} 
-            {set.type} on the {set.interval}
+            {i+1}. {set.count} x {set.distance} {set.stroke} {set.type} on the {set.interval}
             </Text>
         })
     }
